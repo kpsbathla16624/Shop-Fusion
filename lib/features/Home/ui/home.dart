@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopfusion/data/repositories/Products.dart';
+import 'package:shopfusion/features/Home/ui/Lists.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -10,7 +11,7 @@ class Home extends StatelessWidget {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: products
+          children: others
               .map((e) => Card(
                     child: Image(
                       image: NetworkImage(
