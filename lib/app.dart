@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopfusion/features/Home/ui/home_screen.dart';
+import 'package:shopfusion/features/indicator_Screen/indicator.dart';
 import 'package:shopfusion/utils/theme/theme.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: SfAppTheme.lightTheme,
       darkTheme: SfAppTheme.DarkTheme,
-      home: HomeScreen(),
+      home: FirstTimeScreen(),
     );
   }
 }

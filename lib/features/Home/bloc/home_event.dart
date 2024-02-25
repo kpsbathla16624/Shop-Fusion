@@ -5,5 +5,10 @@ sealed class HomeEvent {}
 
 class WislistButtonClicked extends HomeEvent {
   BuildContext context;
-  WislistButtonClicked( this.context);
+  WislistButtonClicked(this.context);
+}
+
+class initalEvent extends HomeEvent {
+  
+
 }

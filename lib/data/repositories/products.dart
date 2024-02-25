@@ -97,7 +97,7 @@ List<ProductModel> products = [
       brand: 'Apple',
       image_path:
           'https://rukminim2.flixcart.com/image/312/312/ktketu80/mobile/6/n/d/iphone-13-mlpg3hn-a-apple-original-imag6vpyghayhhrh.jpeg?q=70',
-      category: 'mobile',
+      category: 'Mobile',
       reviews: 3456,
       no_rating: 7000,
       rating: 4.8),
@@ -107,7 +107,7 @@ List<ProductModel> products = [
       description: 'Vivo v25 , surfing blue , 8/128 GB ',
       brand: 'Vivo',
       image_path: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/x/6/i/-original-imagg4kcj7ew4xgh.jpeg?q=70',
-      category: 'mobile',
+      category: 'Mobile',
       reviews: 50598,
       no_rating: 99890,
       rating: 4.5),
@@ -117,8 +117,19 @@ List<ProductModel> products = [
       description: 'ivo T2x 5G (Marine Blue, 128 GB)  (6 GB RAM)',
       brand: 'Vivo',
       image_path: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/k/u/n/-original-imagzjhwtfthcmzz.jpeg?q=70',
-      category: 'mobile',
+      category: 'Mobile',
       reviews: 48590,
       no_rating: 99325,
       rating: 4.1),
+  ProductModel(
+      title: 'realme 12 Pro+ 5G ',
+      price: 29999,
+      description: 'realme 12 Pro+ 5G (Submarine Blue, 128 GB)  (8 GB RAM)',
+      brand: 'Realme ',
+      image_path:
+          'https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/g/t/u/-original-imagxhd5xtjuwnqz.jpeg?q=70&crop=false',
+      category: 'Mobile',
+      reviews: 4959,
+      no_rating: 244848,
+      rating: 4.2)
 ];

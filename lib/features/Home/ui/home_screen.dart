@@ -23,8 +23,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late PageController _pageController;
   int selectedIndex = 0;
-  void initState() {
-    super.initState();
+  void initState()  {
+    
     _pageController = PageController(initialPage: selectedIndex);
   }
 
@@ -35,9 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _pageController.animateToPage(selectedIndex, duration: const Duration(milliseconds: 400), curve: Curves.easeOutQuad);
   }
 
+  HomeBloc homeBloc = HomeBloc();
   @override
   Widget build(BuildContext context) {
-    HomeBloc homeBloc = HomeBloc();
     return Scaffold(
       appBar: AppBar(
         leading: Container(
@@ -67,11 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
             bloc: homeBloc,
             listener: (context, state) {
               // TODO: implement listener
-              if (state is NavigateToWishlist_state) {
-                print('YES');
-              } else {
-                print('Erro');
-              }
             },
             child: IconButton(
                 onPressed: () {
