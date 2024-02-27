@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:shopfusion/data/repositories/Products_models.dart';
 import 'package:shopfusion/features/Home/bloc/home_bloc.dart';
-import 'package:shopfusion/features/Home/ui/home.dart';
 import 'package:shopfusion/features/ProductScreen/ui/productScreen.dart';
 import 'package:shopfusion/utils/helpers/helper_function.dart';
 

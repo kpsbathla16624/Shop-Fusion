@@ -25,15 +25,16 @@ class ProductScreen extends StatelessWidget {
       listener: (context, state) {
         switch (state.runtimeType) {
           case AddedToCartState:
-            final addedToCartState = state as AddedToCartState;
             final existingItemIndex = cart.indexWhere((item) => item.title == product.title);
             if (existingItemIndex != -1) {
               // If item already exists in cart, increase its amount by 1
               final existingItem = cart[existingItemIndex];
               cartBloc.add(IncrementCartItemAmount(productModel: existingItem));
+              HELPER.showSnackBar('Added to cart ');
             } else {
               // If item doesn't exist in cart, add it
               cart.add(product);
+              HELPER.showSnackBar('Added to cart ');
             }
             saveCartData(cart);
             break;

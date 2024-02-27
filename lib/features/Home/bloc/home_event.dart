@@ -4,7 +4,7 @@ part of 'home_bloc.dart';
 sealed class HomeEvent {}
 
 class WislistButtonClicked extends HomeEvent {
-  BuildContext context;
+   final BuildContext context;
   WislistButtonClicked(this.context);
 }
 

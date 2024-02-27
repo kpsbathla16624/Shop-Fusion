@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopfusion/common/widgets/Card.dart';
-import 'package:shopfusion/data/repositories/Products_models.dart';
 import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/Home/bloc/home_bloc.dart';
 import 'package:shopfusion/features/Home/ui/lists.dart';

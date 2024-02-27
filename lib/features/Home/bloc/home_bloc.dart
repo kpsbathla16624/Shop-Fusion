@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:shopfusion/data/repositories/Products_models.dart';
-import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/wishlist/ui/wishlist_screen.dart';
 
 part 'home_event.dart';

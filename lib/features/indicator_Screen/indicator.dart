@@ -14,8 +14,7 @@ class FirstTimeScreen extends StatefulWidget {
 
 class _FirstTimeScreenState extends State<FirstTimeScreen> {
   late SharedPreferences _prefs;
-  bool _isFirstTime = true;
-
+ 
   @override
   void initState() {
     super.initState();
