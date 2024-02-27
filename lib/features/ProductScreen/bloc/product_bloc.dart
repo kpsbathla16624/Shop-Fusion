@@ -14,6 +14,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<Product_Add_To_Cart>(product_Add_To_Cart);
     on<Product_Buyed>(product_Buyed);
     on<addedToWishlist>(addedToWishlist_);
+   
   }
 
   FutureOr<void> product_Add_To_Cart(Product_Add_To_Cart event, Emitter<ProductState> emit) {
@@ -28,4 +29,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     wislist.add(event._productModel);
     emit(wishlist());
   }
+
+ 
 }

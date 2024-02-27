@@ -18,3 +18,4 @@ class addedToWishlist extends ProductEvent {
 
   addedToWishlist(this._productModel);
 }
+

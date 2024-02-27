@@ -11,3 +11,11 @@ class updateTotal extends CartEvent {
     required this.total,
   });
 }
+
+class IncrementCartItemAmount extends CartEvent {
+  final ProductModel productModel;
+  IncrementCartItemAmount({
+    required this.productModel,
+  });
+  
+}

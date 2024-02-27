@@ -25,11 +25,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late PageController _pageController;
   int selectedIndex = 0;
- 
 
   void initState() {
     _pageController = PageController(initialPage: selectedIndex);
-    
+    // cart.clear();
+    // saveCartData(cart);
   }
 
   void onButtonPressed(int index) {
@@ -42,7 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
   HomeBloc homeBloc = HomeBloc();
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         leading: Container(

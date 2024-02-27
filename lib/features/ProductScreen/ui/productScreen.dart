@@ -19,18 +19,26 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProductBloc productBloc = ProductBloc();
+    final CartBloc cartBloc = CartBloc();
     return BlocConsumer<ProductBloc, ProductState>(
       bloc: productBloc,
       listener: (context, state) {
         switch (state.runtimeType) {
           case AddedToCartState:
-            cart.add(product);
-             saveCartData(cart);
-
+            final addedToCartState = state as AddedToCartState;
+            final existingItemIndex = cart.indexWhere((item) => item.title == product.title);
+            if (existingItemIndex != -1) {
+              // If item already exists in cart, increase its amount by 1
+              final existingItem = cart[existingItemIndex];
+              cartBloc.add(IncrementCartItemAmount(productModel: existingItem));
+            } else {
+              // If item doesn't exist in cart, add it
+              cart.add(product);
+            }
+            saveCartData(cart);
             break;
           default:
         }
-        // TODO: implement listener
       },
       builder: (context, state) {
         return Scaffold(

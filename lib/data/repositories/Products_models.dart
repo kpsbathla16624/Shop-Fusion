@@ -8,7 +8,7 @@ class ProductModel {
   final int reviews;
   final int no_rating;
   final double rating;
-  final int amount;
+   int amount;
 
   ProductModel(
       {required this.title,

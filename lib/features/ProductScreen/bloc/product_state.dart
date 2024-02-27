@@ -19,7 +19,5 @@ class BuyNowState extends ProductState {
   });
 }
 
-class wishlist extends ProductState {
-  
+class wishlist extends ProductState {}
 
-}

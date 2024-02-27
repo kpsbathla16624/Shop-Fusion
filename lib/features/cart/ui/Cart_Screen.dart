@@ -18,35 +18,75 @@ class _CartScreenState extends State<CartScreen> {
     return BlocConsumer<CartBloc, CartState>(
       bloc: cartBloc,
       listener: (context, state) {
+        if (state.runtimeType== amountUpdated) {
+          saveCartData(cart);
+          
+        }
         // TODO: implement listener
       },
       builder: (context, state) {
         if (cart.isNotEmpty) {
-          return SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: cart.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        leading: Image(image: NetworkImage(cart[index].image_path)),
-                        title: Text(cart[index].title),
-                        subtitle: Text('Rs. ${cart[index].price.toString()}'),
-                        trailing: Container(
-                          child: Row(
-                            children: [Icon(Icons.remove), 
-                            Text(cart[index].amount.toString()),
-                            Icon(Icons.add)],
+          return Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: cart.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: ListTile(
+                          leading: Image(image: NetworkImage(cart[index].image_path)),
+                          title: Text(cart[index].title),
+                          subtitle: Text('Rs. ${cart[index].price.toString()}'),
+                          trailing: BlocBuilder<CartBloc, CartState>(
+                            bloc: cartBloc,
+                            builder: (context, state) {
+                              if (state.runtimeType == amountUpdated) {
+                                return Container(
+                                  height: 50,
+                                  width: 150,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
+                                      Text(cart[index].amount.toString()),
+                                      IconButton(
+                                          onPressed: () {
+                                            cartBloc.add(IncrementCartItemAmount(productModel: cart[index]));
+                                          },
+                                          icon: Icon(Icons.add))
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                return Container(
+                                  height: 50,
+                                  width: 150,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
+                                      Text(cart[index].amount.toString()),
+                                      IconButton(
+                                          onPressed: () {
+                                            cartBloc.add(IncrementCartItemAmount(productModel: cart[index]));
+                                          },
+                                          icon: Icon(Icons.add))
+                                    ],
+                                  ),
+                                );
+                              }
+                            },
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           );
         } else {
