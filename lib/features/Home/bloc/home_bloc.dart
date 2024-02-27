@@ -15,6 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
     on<WislistButtonClicked>(wislistButtonClicked);
     on<initalEvent>(_initalEvent);
+    on<ProductScreenNavigate>(productScreenNavigate);
   }
 
   FutureOr<void> wislistButtonClicked(WislistButtonClicked event, Emitter<HomeState> emit) {
@@ -24,5 +25,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _initalEvent(initalEvent event, Emitter<HomeState> emit) {
     emit(InitialState());
+  }
+
+  FutureOr<void> productScreenNavigate(ProductScreenNavigate event, Emitter<HomeState> emit) {
+    emit(NavigateToProduct_state());
   }
 }

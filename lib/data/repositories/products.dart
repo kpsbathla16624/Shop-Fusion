@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:shopfusion/data/repositories/Products_models.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<ProductModel> products = [
   // category = shoes
   ProductModel(
+      amount: 1,
       title: 'Sneakers girls',
       price: 1099,
       description: ' Sylish sneakers for girls',
@@ -14,6 +18,7 @@ List<ProductModel> products = [
       no_rating: 5000,
       rating: 4.3),
   ProductModel(
+      amount: 1,
       title: 'Sports/ Running Shoes ',
       price: 999,
       description: 'Blue sports shoes',
@@ -25,6 +30,7 @@ List<ProductModel> products = [
       no_rating: 3000,
       rating: 4.6),
   ProductModel(
+      amount: 1,
       title: 'Formals for men ',
       price: 899,
       description: '',
@@ -35,6 +41,7 @@ List<ProductModel> products = [
       no_rating: 1890,
       rating: 4.0),
   ProductModel(
+      amount: 1,
       title: 'White Sneakers ',
       price: 799,
       description: 'Stylish & Trending Outdoor Walking Comfortable Sneakers For Men  (White)',
@@ -46,6 +53,7 @@ List<ProductModel> products = [
       no_rating: 890,
       rating: 3.9),
   ProductModel(
+      amount: 1,
       title: 'Chelsa Boots',
       price: 1259,
       description: 'Anglo-2 Chelsea Boots For Men  (Black)',
@@ -57,6 +65,7 @@ List<ProductModel> products = [
       no_rating: 2500,
       rating: 4.6),
   ProductModel(
+      amount: 1,
       title: 'Boys/Mens Snekers ',
       price: 5999,
       description: 'Boys and mens Boots outdoors shoo High Tops For Men  (White, Blue)',
@@ -68,6 +77,7 @@ List<ProductModel> products = [
       no_rating: 3000,
       rating: 4.8),
   ProductModel(
+      amount: 1,
       title: 'Boys sports shoes',
       price: 799,
       description: 'Exclusive Affordable Collection of Trendy & Stylish Sport Sneakers Shoes Walking Shoes For Men  (Blue)',
@@ -79,6 +89,7 @@ List<ProductModel> products = [
       no_rating: 2000,
       rating: 4.5),
   ProductModel(
+      amount: 1,
       title: 'Outdoor boots',
       price: 1599,
       description: 'Outdoor durable shoes for men ',
@@ -91,9 +102,10 @@ List<ProductModel> products = [
 
   //mobiles
   ProductModel(
+      amount: 1,
       title: 'Iphone 13 ',
       price: 52999,
-      description: ' Apple Iphone 13 128 Gb ',
+      description: 'Apple Iphone 13 128 Gb ',
       brand: 'Apple',
       image_path:
           'https://rukminim2.flixcart.com/image/312/312/ktketu80/mobile/6/n/d/iphone-13-mlpg3hn-a-apple-original-imag6vpyghayhhrh.jpeg?q=70',
@@ -102,6 +114,7 @@ List<ProductModel> products = [
       no_rating: 7000,
       rating: 4.8),
   ProductModel(
+      amount: 1,
       title: 'Vivo V25',
       price: 27999,
       description: 'Vivo v25 , surfing blue , 8/128 GB ',
@@ -112,9 +125,10 @@ List<ProductModel> products = [
       no_rating: 99890,
       rating: 4.5),
   ProductModel(
+      amount: 1,
       title: 'Vivo T2x 5G ',
       price: 12999,
-      description: 'ivo T2x 5G (Marine Blue, 128 GB)  (6 GB RAM)',
+      description: 'vivo T2x 5G (Marine Blue, 128 GB)  (6 GB RAM)',
       brand: 'Vivo',
       image_path: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/k/u/n/-original-imagzjhwtfthcmzz.jpeg?q=70',
       category: 'Mobile',
@@ -122,6 +136,7 @@ List<ProductModel> products = [
       no_rating: 99325,
       rating: 4.1),
   ProductModel(
+      amount: 1,
       title: 'realme 12 Pro+ 5G ',
       price: 29999,
       description: 'realme 12 Pro+ 5G (Submarine Blue, 128 GB)  (8 GB RAM)',
@@ -133,3 +148,24 @@ List<ProductModel> products = [
       no_rating: 244848,
       rating: 4.2)
 ];
+
+List<ProductModel> cart = [];
+List<ProductModel> wislist = [];
+
+// Save cart data to SharedPreferences
+Future<void> saveCartData(List<ProductModel> cart) async {
+  final prefs = await SharedPreferences.getInstance();
+  final cartData = cart.map((product) => product.toJson()).toList();
+  await prefs.setString('cart', jsonEncode(cartData));
+}
+
+// Load cart data from SharedPreferences
+Future<List<ProductModel>> loadCartData() async {
+  final prefs = await SharedPreferences.getInstance();
+  final cartString = prefs.getString('cart');
+  if (cartString != null) {
+    final List<dynamic> cartData = jsonDecode(cartString);
+    return cartData.map((data) => ProductModel.fromJson(data)).toList();
+  }
+  return [];
+}

@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:shopfusion/data/repositories/Products.dart';
 import 'package:shopfusion/features/Home/ui/home.dart';
+import 'package:shopfusion/features/cart/ui/Cart_Screen.dart';
+import 'package:shopfusion/features/profile/ui/profile_screen.dart';
 import 'package:shopfusion/features/wishlist/ui/wishlist_screen.dart';
 import 'package:shopfusion/features/Home/bloc/home_bloc.dart';
 import 'package:shopfusion/utils/helpers/helper_function.dart';
@@ -23,9 +25,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late PageController _pageController;
   int selectedIndex = 0;
-  void initState()  {
-    
+ 
+
+  void initState() {
     _pageController = PageController(initialPage: selectedIndex);
+    
   }
 
   void onButtonPressed(int index) {
@@ -38,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   HomeBloc homeBloc = HomeBloc();
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         leading: Container(
@@ -94,15 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
-        children: [
-          Home(),
-          Center(
-            child: Text('Cart'),
-          ),
-          Center(
-            child: Text('Profile'),
-          ),
-        ],
+        children: [Home(), CartScreen(), ProfileScreen()],
       ),
     );
   }

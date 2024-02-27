@@ -8,7 +8,11 @@ class WislistButtonClicked extends HomeEvent {
   WislistButtonClicked(this.context);
 }
 
-class initalEvent extends HomeEvent {
-  
+class initalEvent extends HomeEvent {}
 
+class ProductScreenNavigate extends HomeEvent {
+  final ProductModel productModel;
+  ProductScreenNavigate(  this.productModel);
 }
+
+

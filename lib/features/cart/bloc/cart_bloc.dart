@@ -1,13 +1,21 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:shopfusion/data/repositories/products.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(CartInitial()) {
-    on<CartEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<updateTotal>(updateTotal_);
+  }
+
+  FutureOr<void> updateTotal_(updateTotal event, Emitter<CartState> emit) {
+    for (var i = 0; i < cart.length; i++) {
+      event.total = event.total + wislist[i].price;
+    }
+    emit(updatedTotalState());
   }
 }

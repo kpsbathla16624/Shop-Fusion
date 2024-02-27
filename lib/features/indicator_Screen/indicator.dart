@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shopfusion/common/widgets/Card.dart';
+
 import 'package:shopfusion/common/widgets/information_containers.dart';
 import 'package:shopfusion/features/Home/ui/home_screen.dart';
-import 'package:shopfusion/features/Home/ui/lists.dart';
+
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class FirstTimeScreen extends StatefulWidget {
@@ -31,7 +31,7 @@ class _FirstTimeScreenState extends State<FirstTimeScreen> {
     bool isFirstTime = _prefs.getBool('isFirstTime') ?? true;
     if (!isFirstTime) {
       Navigator.of(context).pushReplacement(
-       MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     } else {
       _prefs.setBool('isFirstTime', false);
