@@ -1,16 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:shopfusion/data/repositories/Products.dart';
 import 'package:shopfusion/features/Home/ui/home.dart';
 import 'package:shopfusion/features/cart/ui/Cart_Screen.dart';
 import 'package:shopfusion/features/profile/ui/profile_screen.dart';
-import 'package:shopfusion/features/wishlist/ui/wishlist_screen.dart';
 import 'package:shopfusion/features/Home/bloc/home_bloc.dart';
-import 'package:shopfusion/utils/helpers/helper_function.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 import 'package:shopfusion/utils/constants/colors.dart';
 import 'package:shopfusion/utils/device/device_util.dart';
@@ -27,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
 
   void initState() {
+    super.initState();
     _pageController = PageController(initialPage: selectedIndex);
     // cart.clear();
     // saveCartData(cart);

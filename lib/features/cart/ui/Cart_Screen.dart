@@ -18,9 +18,8 @@ class _CartScreenState extends State<CartScreen> {
     return BlocConsumer<CartBloc, CartState>(
       bloc: cartBloc,
       listener: (context, state) {
-        if (state.runtimeType== amountUpdated) {
+        if (state.runtimeType == amountUpdated) {
           saveCartData(cart);
-          
         }
         // TODO: implement listener
       },
@@ -51,7 +50,11 @@ class _CartScreenState extends State<CartScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
+                                      IconButton(
+                                          onPressed: () {
+                                            cartBloc.add(DecrementCartItemAmount(productModel: cart[index]));
+                                          },
+                                          icon: Icon(Icons.remove)),
                                       Text(cart[index].amount.toString()),
                                       IconButton(
                                           onPressed: () {
@@ -68,7 +71,11 @@ class _CartScreenState extends State<CartScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
+                                      IconButton(
+                                          onPressed: () {
+                                            cartBloc.add(DecrementCartItemAmount(productModel: cart[index]));
+                                          },
+                                          icon: Icon(Icons.remove)),
                                       Text(cart[index].amount.toString()),
                                       IconButton(
                                           onPressed: () {

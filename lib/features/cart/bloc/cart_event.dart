@@ -19,3 +19,10 @@ class IncrementCartItemAmount extends CartEvent {
   });
   
 }
+class DecrementCartItemAmount extends CartEvent {
+  final ProductModel productModel;
+  DecrementCartItemAmount({
+    required this.productModel,
+  });
+  
+}
