@@ -167,5 +167,15 @@ Future<List<ProductModel>> loadCartData() async {
     final List<dynamic> cartData = jsonDecode(cartString);
     return cartData.map((data) => ProductModel.fromJson(data)).toList();
   }
+
   return [];
+}
+
+double total = 0;
+
+calculateTotal() {
+  total = 0;
+  for (var i = 0; i < cart.length; i++) {
+    total = total + (cart[i].price * cart[i].amount);
+  }
 }

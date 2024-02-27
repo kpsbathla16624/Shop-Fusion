@@ -14,6 +14,13 @@ final CartBloc cartBloc = CartBloc();
 
 class _CartScreenState extends State<CartScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    calculateTotal();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<CartBloc, CartState>(
       bloc: cartBloc,
@@ -35,6 +42,7 @@ class _CartScreenState extends State<CartScreen> {
                     shrinkWrap: true,
                     itemCount: cart.length,
                     itemBuilder: (context, index) {
+                      print('item builder run');
                       return Card(
                         child: ListTile(
                           leading: Image(image: NetworkImage(cart[index].image_path)),
@@ -92,6 +100,9 @@ class _CartScreenState extends State<CartScreen> {
                       );
                     },
                   ),
+                  Center(
+                    child: Text(total.toString()),
+                  )
                 ],
               ),
             ),

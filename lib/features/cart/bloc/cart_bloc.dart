@@ -17,16 +17,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   FutureOr<void> updateTotal_(updateTotal event, Emitter<CartState> emit) {
-    for (var i = 0; i < cart.length; i++) {
-      event.total = event.total + wislist[i].price;
-    }
     emit(updatedTotalState());
   }
 
   FutureOr<void> incrementCartItemAmount(IncrementCartItemAmount event, Emitter<CartState> emit) {
     event.productModel.amount = event.productModel.amount + 1;
-
+    calculateTotal();
     emit(amountUpdated());
+    emit(updatedTotalState());
   }
 
   FutureOr<void> decrementCartItemAmount(DecrementCartItemAmount event, Emitter<CartState> emit) {
@@ -35,7 +33,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     } else if (event.productModel.amount == 1) {
       cart.remove(event.productModel);
     }
-
+    calculateTotal();
     emit(amountUpdated());
+
+    emit(updatedTotalState());
   }
 }
