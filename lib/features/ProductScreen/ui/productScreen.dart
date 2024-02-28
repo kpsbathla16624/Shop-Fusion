@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +59,7 @@ class ProductScreen extends StatelessWidget {
                       child: Card(
                           margin: EdgeInsets.all(10),
                           shadowColor: Colors.grey.shade300,
-                          child: Hero(tag: product.title, child: Image(image: NetworkImage(product.image_path))))),
+                          child: Hero(tag: product.title, child: Image(image: CachedNetworkImageProvider(product.image_path))))),
                   SizedBox(
                     height: 25,
                   ),
