@@ -30,11 +30,12 @@ class ProductScreen extends StatelessWidget {
               // If item already exists in cart, increase its amount by 1
               final existingItem = cart[existingItemIndex];
               cartBloc.add(IncrementCartItemAmount(productModel: existingItem));
-              HELPER.showSnackBar('Added to cart ');
+
+              HELPER.showSnackBar('Added to cart', context);
             } else {
               // If item doesn't exist in cart, add it
               cart.add(product);
-              HELPER.showSnackBar('Added to cart ');
+              HELPER.showSnackBar('Added to cart', context);
             }
             saveCartData(cart);
             break;
@@ -85,14 +86,23 @@ class ProductScreen extends StatelessWidget {
                                     color: Colors.red,
                                   ));
                             default:
-                              return IconButton(
-                                  onPressed: () {
-                                    productBloc.add(addedToWishlist(product));
-                                  },
-                                  icon: Icon(
-                                    Icons.favorite,
-                                    color: Colors.grey,
-                                  ));
+                              if (wislist.contains(product)) {
+                                return IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    ));
+                              } else {
+                                return IconButton(
+                                    onPressed: () {
+                                      productBloc.add(addedToWishlist(product));
+                                    },
+                                    icon: Icon(
+                                      Icons.favorite,
+                                      color: Colors.grey,
+                                    ));
+                              }
                           }
                         },
                       )

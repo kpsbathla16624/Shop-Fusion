@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/utils/constants/colors.dart';
@@ -25,7 +26,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                      leading: Image(image: NetworkImage(wislist[index].image_path)),
+                      leading: Image(image: CachedNetworkImageProvider(wislist[index].image_path)),
                       title: Text(wislist[index].title),
                       trailing: Text('Rs.${wislist[index].price.toString()}'),
                     ),

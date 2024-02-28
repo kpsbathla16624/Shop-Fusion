@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopfusion/data/repositories/products.dart';
@@ -45,7 +46,7 @@ class _CartScreenState extends State<CartScreen> {
                       print('item builder run');
                       return Card(
                         child: ListTile(
-                          leading: Image(image: NetworkImage(cart[index].image_path)),
+                          leading: Image(image: CachedNetworkImageProvider(cart[index].image_path)),
                           title: Text(cart[index].title),
                           subtitle: Text('Rs. ${cart[index].price.toString()}'),
                           trailing: BlocBuilder<CartBloc, CartState>(

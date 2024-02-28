@@ -4,6 +4,7 @@ import 'package:shopfusion/data/repositories/Products_models.dart';
 import 'package:shopfusion/features/Home/bloc/home_bloc.dart';
 import 'package:shopfusion/features/ProductScreen/ui/productScreen.dart';
 import 'package:shopfusion/utils/helpers/helper_function.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 String truncateString(String text, int maxLength) {
   if (text.length <= maxLength) {
@@ -40,7 +41,7 @@ Widget ProductCard(BuildContext context, ProductModel productModel) {
                   child: Hero(
                     tag: productModel.title,
                     child: Image(
-                      image: NetworkImage(
+                      image: CachedNetworkImageProvider(
                         productModel.image_path,
                       ),
                       height: 150,
