@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:shopfusion/data/repositories/Products_models.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shopfusion/features/Home/ui/lists.dart';
 
 List<ProductModel> products = [
   // category = shoes
@@ -146,7 +147,90 @@ List<ProductModel> products = [
       category: 'Mobile',
       reviews: 4959,
       no_rating: 244848,
-      rating: 4.2)
+      rating: 4.2),
+  ProductModel(
+      title: 'Acer Nitro V Gaming ',
+      price: 74990,
+      description:
+          'Laptop 13th Gen Intel Core i5-13420H with RTX 3050 Graphics 6 GB VRAM, 144Hz Display (16 GB DDR5/512GB SSD/Windows 11 Home/Wi-Fi 6),15.6"(39.6cms) FHD ANV15-51',
+      brand: 'Acer',
+      image_path: 'https://m.media-amazon.com/images/I/51GGNToj7aL._SX679_.jpg',
+      category: 'Electronics',
+      reviews: 500,
+      no_rating: 785,
+      rating: 4.7,
+      amount: 1),
+  ProductModel(
+      title: 'ASUS ROG Strix G17 ',
+      price: 88990,
+      description:
+          ' 17.3-inch (43.94 cms) FHD 144Hz, AMD Ryzen 7-6800HS, RTX 3050 4GB Graphics, Gaming Laptop (16GB/512GB SSD/Windows 11/Gray/2.5 Kg),G713RC-HX109WS',
+      brand: 'Asus',
+      image_path: 'https://m.media-amazon.com/images/I/61GkvvDNnCL._SX679_.jpg',
+      category: 'Electronics',
+      reviews: 345,
+      no_rating: 897,
+      rating: 4.7,
+      amount: 1),
+  ProductModel(
+      title: 'Lenovo Legion 5 Pro',
+      price: 89990,
+      description:
+          'AMD Ryzen 7 5800H40cm 500Nits QHD Gaming Laptop(16GB/1TB SSD/RTX 3060 6GB GDDR6 Graphics/165Hz/Windows 11/Office 2021/RGB Backlit/3mnth Xbox Game Pass/Storm Grey/2.45Kg)82JQ00JCIN',
+      brand: 'Lenovo',
+      image_path: 'https://m.media-amazon.com/images/I/61tAKdpQQzL._SX679_.jpg',
+      category: 'Electronics',
+      reviews: 256,
+      no_rating: 400,
+      rating: 3.5,
+      amount: 1),
+  ProductModel(
+      title: 'Apple 2023 MacBook Pro ',
+      price: 319900,
+      description: '(14-inch, M3 Max chip with 14‑core CPU and 30‑core GPU, 36GB Unified Memory, 1TB) - Space Black',
+      brand: 'Apple',
+      image_path: 'https://m.media-amazon.com/images/I/61RJn0ofUsL._SX679_.jpg',
+      category: 'Electronics ',
+      reviews: 1983,
+      no_rating: 2034,
+      rating: 4.2,
+      amount: 1),
+  ProductModel(
+      title: 'boAt Nirvana 751',
+      price: 4499,
+      description:
+          'boAt Nirvana 751 ANC Hybrid Active Noise Cancelling Bluetooth Wireless Over Ear Headphones with Up to 65H Playtime, ASAP Charge, Ambient Sound Mode, Immersive Sound, Carry Pouch(Gunmetal Grey)',
+      brand: 'Boat',
+      image_path: 'https://m.media-amazon.com/images/I/71ISIssoVFL._SX522_.jpg',
+      category: 'Electronics',
+      reviews: 4575,
+      no_rating: 9987,
+      rating: 4.0,
+      amount: 1),
+  ProductModel(
+      title: 'OnePlus Bluetooth Wireless',
+      price: 1799,
+      description:
+          ' Bullets Z2  in Ear Earphones with Mic, Bombastic Bass - 12.4 Mm Drivers, 10 Mins Charge - 20 Hrs Music, 30 Hrs Battery Life (Magico Black)',
+      brand: 'OnePlus',
+      image_path: 'https://m.media-amazon.com/images/I/51UhwaQXCpL._SX679_.jpg',
+      category: 'Electronics',
+      reviews: 789,
+      no_rating: 8986,
+      rating: 4,
+      amount: 1),
+  ProductModel(
+      title: 'Realme buds air 4',
+      price: 3789,
+      description:
+          ' True Wireless in-Ear Earbuds with 42dB Active Noise Cancellation (ANC), Dual Device Pairing and 30 hrs Playtime with Fast Charging (Galaxy White)',
+      brand: 'Realme',
+      image_path: 'https://m.media-amazon.com/images/I/51DclWv+E3L._SX679_.jpg',
+      category: 'Electronics',
+      reviews: 789,
+      no_rating: 9898,
+      rating: 4.5,
+      amount: 1)
 ];
 
 List<ProductModel> cart = [];
@@ -177,5 +261,12 @@ calculateTotal() {
   total = 0;
   for (var i = 0; i < cart.length; i++) {
     total = total + (cart[i].price * cart[i].amount);
+  }
+}
+
+shuffle_lists() {
+  lists.shuffle();
+  for (var i = 0; i < lists.length; i++) {
+    lists[i].shuffle();
   }
 }

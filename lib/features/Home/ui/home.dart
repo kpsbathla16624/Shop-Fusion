@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopfusion/common/widgets/Card.dart';
+import 'package:shopfusion/common/widgets/ad_view.dart';
+import 'package:shopfusion/common/widgets/category_row.dart';
 import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/Home/bloc/home_bloc.dart';
 import 'package:shopfusion/features/Home/ui/lists.dart';
@@ -21,64 +24,71 @@ class _HomeState extends State<Home> {
     super.initState();
     homeBloc.add(initalEvent());
   }
-  
-   void loaddata() async {
+
+  void loaddata() async {
     cart = await loadCartData();
   }
 
   @override
   Widget build(BuildContext context) {
-    lists.shuffle();
     print('rebuild');
     loaddata();
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
       listener: (context, state) {
         // TODO: implement listener
-        
       },
       builder: (context, state) {
         switch (state.runtimeType) {
           case InitialState:
             return SingleChildScrollView(
+              padding: EdgeInsets.all(8),
               scrollDirection: Axis.vertical,
-              child: Column(children: [
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Container(
+                  height: 265,
+                  width: double.infinity,
+                  child: MyPageView(),
+                ),
+                SizedBox(height: 20),
+                Divider(),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        lists[0][0].category,
-                        style: TextStyle(fontSize: 30),
+                        'Categories',
+                        style: TextStyle(fontSize: 25),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: lists[0].map((e) => ProductCard(context, e)).toList(),
-                      ),
+                      SizedBox(height: 10),
+                      Category_row(),
                     ],
                   ),
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Column(
+                SizedBox(height: 10),
+                Divider(),
+                for (int i = 0; i < lists.length; i++)
+                if(lists[i].isNotEmpty)
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        lists[1][0].category,
-                        style: TextStyle(fontSize: 30),
+                        lists[i][0].category,
+                        style: TextStyle(fontSize: 25),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        children: lists[1].map((e) => ProductCard(context, e)).toList(),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: lists[i].map((e) => ProductCard(context, e)).toList(),
+                        ),
                       ),
+                      SizedBox(height: 10)
                     ],
                   ),
-                ),
               ]),
             );
           default:
@@ -90,38 +100,5 @@ class _HomeState extends State<Home> {
         }
       },
     );
-    // Container(
-    //   child: Column(
-    //     children: [
-    //       SingleChildScrollView(
-    //         scrollDirection: Axis.horizontal,
-    //         child: Row(
-    //           children: others
-    //               .map((e) => Card(
-    //                     child: Image(
-    //                       image: NetworkImage(
-    //                         e.image_path,
-    //                       ),
-    //                       height: 100,
-    //                     ),
-    //                   ))
-    //               .toList(),
-    //         ),
-    //       ),
-    //       Row(
-    //         children: mobiles
-    //             .map((e) => Card(
-    //                   child: Image(
-    //                     image: NetworkImage(
-    //                       e.image_path,
-    //                     ),
-    //                     height: 100,
-    //                   ),
-    //                 ))
-    //             .toList(),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }

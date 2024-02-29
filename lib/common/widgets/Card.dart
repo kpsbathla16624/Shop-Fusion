@@ -59,7 +59,7 @@ Widget ProductCard(BuildContext context, ProductModel productModel) {
                     )),
                 SizedBox(height: 7),
                 Text(
-                  productModel.title,
+                  '${truncateString(productModel.title, 20)}',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(height: 10),
