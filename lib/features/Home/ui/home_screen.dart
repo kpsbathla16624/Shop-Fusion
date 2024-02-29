@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/Home/ui/home.dart';
-import 'package:shopfusion/features/Home/ui/lists.dart';
 import 'package:shopfusion/features/cart/ui/Cart_Screen.dart';
 import 'package:shopfusion/features/profile/ui/profile_screen.dart';
 import 'package:shopfusion/features/Home/bloc/home_bloc.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 import 'package:shopfusion/utils/constants/colors.dart';
-import 'package:shopfusion/utils/device/device_util.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
