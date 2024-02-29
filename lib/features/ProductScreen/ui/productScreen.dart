@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopfusion/common/widgets/Card.dart';
 
 import 'package:shopfusion/data/repositories/Products_models.dart';
 import 'package:shopfusion/data/repositories/products.dart';
@@ -72,7 +73,7 @@ class ProductScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        product.title,
+                        '${truncateString(product.title, 20)}',
                         style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                       BlocBuilder<ProductBloc, ProductState>(
