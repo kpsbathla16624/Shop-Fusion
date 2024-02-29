@@ -256,12 +256,19 @@ Future<List<ProductModel>> loadCartData() async {
 }
 
 double total = 0;
+double discount = 0;
+double delivery_charge = 100;
+double final_total = 0;
 
 calculateTotal() {
   total = 0;
+  discount = 0;
+  final_total = 0;
   for (var i = 0; i < cart.length; i++) {
     total = total + (cart[i].price * cart[i].amount);
   }
+  discount = (total * 5) / 100;
+  final_total = total - discount + delivery_charge;
 }
 
 shuffle_lists() {

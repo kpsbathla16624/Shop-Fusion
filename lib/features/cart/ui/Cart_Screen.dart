@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/cart/bloc/cart_bloc.dart';
+import 'package:shopfusion/utils/constants/colors.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -16,6 +17,7 @@ final CartBloc cartBloc = CartBloc();
 class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
+    cartBloc.add(CartInitialevent());
     // TODO: implement initState
     super.initState();
     calculateTotal();
@@ -31,6 +33,7 @@ class _CartScreenState extends State<CartScreen> {
         }
         // TODO: implement listener
       },
+      buildWhen: (previous, current) => current is CartInitial,
       builder: (context, state) {
         if (cart.isNotEmpty) {
           return Padding(
@@ -44,6 +47,7 @@ class _CartScreenState extends State<CartScreen> {
                     itemCount: cart.length,
                     itemBuilder: (context, index) {
                       print('item builder run');
+                      print(cart[index].title);
                       return Card(
                         child: ListTile(
                           leading: Image(image: CachedNetworkImageProvider(cart[index].image_path)),
@@ -53,6 +57,7 @@ class _CartScreenState extends State<CartScreen> {
                             bloc: cartBloc,
                             builder: (context, state) {
                               if (state.runtimeType == amountUpdated) {
+                                print('amount updatd ');
                                 return Container(
                                   height: 50,
                                   width: 150,
@@ -101,8 +106,81 @@ class _CartScreenState extends State<CartScreen> {
                       );
                     },
                   ),
-                  Center(
-                    child: Text(total.toString()),
+                  BlocConsumer<CartBloc, CartState>(
+                    bloc: cartBloc,
+                    listener: (context, state) {
+                      // TODO: implement listener
+                    },
+                    builder: (context, state) {
+
+                      return Center(
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 30),
+                              Divider(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Price : ',
+                                    style: TextStyle(fontSize: 20, color: SfColor.primary),
+                                  ),
+                                  Text(
+                                    total.toString(),
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Discount ( 5% ): ',
+                                    style: TextStyle(fontSize: 20, color: SfColor.primary),
+                                  ),
+                                  Text(
+                                    discount.toString(),
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Delivery Charges: ',
+                                    style: TextStyle(fontSize: 20, color: SfColor.primary),
+                                  ),
+                                  Text(
+                                    delivery_charge.toString(),
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              Divider(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Total Amount: ',
+                                    style: TextStyle(fontSize: 20, color: SfColor.primary),
+                                  ),
+                                  Text(
+                                    final_total.toString(),
+                                    style: TextStyle(fontSize: 20),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   )
                 ],
               ),

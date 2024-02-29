@@ -9,3 +9,4 @@ class updatedTotalState extends CartState {}
 
 
 class amountUpdated extends CartState{}
+class amountZero extends CartState{}

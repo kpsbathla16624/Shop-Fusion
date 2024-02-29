@@ -54,7 +54,7 @@ Widget ProductCard(BuildContext context, ProductModel productModel) {
                 Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Rs. ${productModel.price}',
+                      'Rs. ${productModel.price }',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     )),
                 SizedBox(height: 7),
