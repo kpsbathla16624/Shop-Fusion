@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/Home/ui/home.dart';
+import 'package:shopfusion/features/Home/ui/lists.dart';
 import 'package:shopfusion/features/cart/ui/Cart_Screen.dart';
 import 'package:shopfusion/features/profile/ui/profile_screen.dart';
 import 'package:shopfusion/features/Home/bloc/home_bloc.dart';
@@ -22,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void initState() {
     super.initState();
+    shuffle_lists();
     _pageController = PageController(initialPage: selectedIndex);
+    homeBloc.add(initalEvent());
     // cart.clear();
     // saveCartData(cart);
   }
@@ -37,28 +41,29 @@ class _HomeScreenState extends State<HomeScreen> {
   HomeBloc homeBloc = HomeBloc();
   @override
   Widget build(BuildContext context) {
+    print('home');
     return Scaffold(
       appBar: AppBar(
         leading: Container(
-          padding: EdgeInsets.all(5),
-          child: CircleAvatar(
+          padding: const EdgeInsets.all(5),
+          child: const CircleAvatar(
             radius: 5,
             child: Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 3.5),
-                child: SfDeviceUtil.logo(),
-              ),
+                  padding: EdgeInsets.only(top: 3.5),
+                  child: Image(image: AssetImage('assets/logo/LightLogo.png')) //SfDeviceUtil.logo(),
+                  ),
             ),
           ),
         ),
-        titleTextStyle: TextStyle(
+        titleTextStyle: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 30,
           color: SfColor.secondary,
         ),
         centerTitle: true,
         backgroundColor: SfColor.primary,
-        title: Text(
+        title: const Text(
           'Shop Fusion ',
         ),
         actions: [
@@ -71,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   homeBloc.add(WislistButtonClicked(context));
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.favorite,
                   color: SfColor.secondary,
                 )),
@@ -93,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
-        children: [Home(), CartScreen(), ProfileScreen()],
+        children: [const Home(), const CartScreen(), const ProfileScreen()],
       ),
     );
   }

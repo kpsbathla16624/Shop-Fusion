@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       themeMode: ThemeMode.system,
       theme: SfAppTheme.lightTheme,
-      darkTheme: SfAppTheme.DarkTheme,
+      //darkTheme: SfAppTheme.DarkTheme,
       home: FirstTimeScreen(),
     );
   }
