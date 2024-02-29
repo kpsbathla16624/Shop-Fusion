@@ -208,7 +208,7 @@ List<ProductModel> products = [
       rating: 4.0,
       amount: 1),
   ProductModel(
-      title: 'OnePlus Bluetooth Wireless',
+      title: 'OnePlus Bluetooth Wireless headphones',
       price: 1799,
       description:
           ' Bullets Z2  in Ear Earphones with Mic, Bombastic Bass - 12.4 Mm Drivers, 10 Mins Charge - 20 Hrs Music, 30 Hrs Battery Life (Magico Black)',

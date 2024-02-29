@@ -8,6 +8,7 @@ import 'package:shopfusion/data/repositories/Products_models.dart';
 import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/ProductScreen/bloc/product_bloc.dart';
 import 'package:shopfusion/features/cart/bloc/cart_bloc.dart';
+import 'package:shopfusion/features/checkout/ui/checkout_screen.dart';
 import 'package:shopfusion/utils/constants/colors.dart';
 import 'package:shopfusion/utils/helpers/helper_function.dart';
 
@@ -72,9 +73,12 @@ class ProductScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        '${truncateString(product.title, 20)}',
-                        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      Container(
+                        width: MediaQuery.of(context).size.width - 80,
+                        child: Text(
+                          product.title,
+                          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                        ),
                       ),
                       BlocBuilder<ProductBloc, ProductState>(
                         bloc: productBloc,
@@ -175,7 +179,9 @@ class ProductScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      HELPER.navigateToScreen(context, checkoutScreen());
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shopfusion/utils/constants/colors.dart';
 
 class Category_row extends StatelessWidget {
   const Category_row({
