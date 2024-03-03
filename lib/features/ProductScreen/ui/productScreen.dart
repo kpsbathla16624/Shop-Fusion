@@ -180,7 +180,7 @@ class ProductScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      HELPER.navigateToScreen(context, checkoutScreen());
+                      HELPER.navigateToScreen(context, checkoutScreen(productbought: [product],));
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/cart/bloc/cart_bloc.dart';
+import 'package:shopfusion/features/checkout/ui/checkout_screen.dart';
 import 'package:shopfusion/utils/constants/colors.dart';
+import 'package:shopfusion/utils/helpers/helper_function.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -272,7 +274,12 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       );
                     },
-                  )
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        HELPER.navigateToScreen(context, checkoutScreen(productbought: cart));
+                      },
+                      child: Text(' Buy Now '))
                 ],
               ),
             ),

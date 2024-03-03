@@ -259,6 +259,8 @@ double total = 0;
 double discount = 0;
 double delivery_charge = 100;
 double final_total = 0;
+double BUY_total = 0;
+double final_buy_total = 0;
 
 calculateTotal() {
   total = 0;
@@ -269,6 +271,17 @@ calculateTotal() {
   }
   discount = (total * 5) / 100;
   final_total = total - discount + delivery_charge;
+}
+
+calculateBUYTotal(List<ProductModel> productbought) {
+  BUY_total = 0;
+  discount = 0;
+  final_buy_total = 0;
+  for (var i = 0; i < productbought.length; i++) {
+    BUY_total = BUY_total + (productbought[i].price * productbought[i].amount);
+  }
+  discount = (BUY_total * 5) / 100;
+  final_buy_total = BUY_total - discount + delivery_charge;
 }
 
 shuffle_lists() {
