@@ -4,3 +4,7 @@ part of 'checkout_bloc.dart';
 sealed class CheckoutState {}
 
 final class CheckoutInitial extends CheckoutState {}
+
+class NewAdressState extends CheckoutState{}
+class amountUpdatedBuy extends CheckoutState{}
+class amountZero extends CheckoutState{}
