@@ -18,3 +18,7 @@ class DecrementBUYItemAmount extends CheckoutEvent {
     required this.productModel,
   });
 }
+
+class initalEventCheckout extends CheckoutEvent {}
+
+

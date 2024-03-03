@@ -14,6 +14,8 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
     on<addressChanged>(_addressChanged);
     on<IncrementBUYItemAmount>(incrementCartItemAmount);
     on<DecrementBUYItemAmount>(decrementCartItemAmount);
+    on<initalEventCheckout>(_initalEventCheckout);
+  
   }
 
   FutureOr<void> _addressChanged(addressChanged event, Emitter<CheckoutState> emit) {
@@ -22,7 +24,7 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
 
   FutureOr<void> incrementCartItemAmount(IncrementBUYItemAmount event, Emitter<CheckoutState> emit) {
     event.productModel.amount = event.productModel.amount + 1;
-   
+
     emit(amountUpdatedBuy());
   }
 
@@ -31,7 +33,13 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       event.productModel.amount = event.productModel.amount - 1;
       emit(amountUpdatedBuy());
     } else if (event.productModel.amount == 1) {
-      emit(amountUpdatedBuy());
+      emit(checkoutrebuild());
     }
   }
+
+  FutureOr<void> _initalEventCheckout(initalEventCheckout event, Emitter<CheckoutState> emit) {
+    emit(checkoutrebuild());
+  }
+
+
 }

@@ -16,9 +16,9 @@ class checkoutScreen extends StatelessWidget {
     String selected_address = address[0];
     CheckoutBloc checkoutBloc = CheckoutBloc();
     print('Checkout screen');
+    checkoutBloc.add(initalEventCheckout());
     return Scaffold(
       appBar: AppBar(
-        
         backgroundColor: SfColor.primary,
         title: Text(
           'Checkout',
@@ -59,50 +59,60 @@ class checkoutScreen extends StatelessWidget {
             ),
             Divider(),
             for (int i = 0; i < productbought.length; i++)
-              Card(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    leading: CachedNetworkImage(imageUrl: productbought[i].image_path),
-                    title: Text(productbought[i].title),
-                    subtitle: Text('Rs. ${productbought[i].price}'),
-                    trailing: BlocConsumer<CheckoutBloc, CheckoutState>(
-                      buildWhen: (previous, current) => current is amountUpdatedBuy,
-                      listener: (BuildContext context, CheckoutState) {},
-                      bloc: checkoutBloc,
-                      builder: (context, state) {
-                        print('amount updatd ');
+              BlocConsumer<CheckoutBloc, CheckoutState>(
+                bloc: checkoutBloc,
+                buildWhen: (previous, current) => current is checkoutrebuild,
+                listener: (context, state) {
+                  // TODO: implement listener
+                },
+                builder: (context, state) {
+                  print('Card built');
 
-                        calculateBUYTotal(productbought);
+                  return Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        leading: CachedNetworkImage(imageUrl: productbought[i].image_path),
+                        title: Text(productbought[i].title),
+                        subtitle: Text('Rs. ${productbought[i].price}'),
+                        trailing: BlocConsumer<CheckoutBloc, CheckoutState>(
+                          buildWhen: (previous, current) => current is amountUpdatedBuy,
+                          listener: (BuildContext context, CheckoutState) {},
+                          bloc: checkoutBloc,
+                          builder: (context, state) {
+                            print('amount updatd ');
 
-                        return Container(
-                          height: 50,
-                          width: 150,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    checkoutBloc.add(DecrementBUYItemAmount(productModel: productbought[i]));
-                                    calculateBUYTotal(productbought);
-                                  },
+                            calculateBUYTotal(productbought);
 
-                                  icon: Icon(Icons.remove)),
-                              Text(productbought[i].amount.toString()),
-                              IconButton(
-                                  onPressed: () {
-                                    checkoutBloc.add(IncrementBUYItemAmount(productModel: productbought[i]));
-                                    calculateBUYTotal(productbought);
-                                  },
-                                  icon: Icon(Icons.add)),
-                            ],
-                          ),
-                        );
-                      },
+                            return Container(
+                              height: 50,
+                              width: 150,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        
+                                          checkoutBloc.add(DecrementBUYItemAmount(productModel: productbought[i]));
+                                        
+                                      },
+                                      icon: Icon(Icons.remove)),
+                                  Text(productbought[i].amount.toString()),
+                                  IconButton(
+                                      onPressed: () {
+                                        checkoutBloc.add(IncrementBUYItemAmount(productModel: productbought[i]));
+                                      },
+                                      icon: Icon(Icons.add)),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             BlocConsumer<CheckoutBloc, CheckoutState>(
               buildWhen: (previous, current) => current is amountUpdatedBuy,
@@ -111,6 +121,7 @@ class checkoutScreen extends StatelessWidget {
                 // TODO: implement listener
               },
               builder: (context, state) {
+                calculateBUYTotal(productbought);
                 return Center(
                   child: Container(
                     padding: EdgeInsets.all(15),
