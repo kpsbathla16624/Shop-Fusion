@@ -54,95 +54,105 @@ class _CartScreenState extends State<CartScreen> {
                         print('item builder run');
                         print(cart[index].title);
                         return Card(
-                            color: Colors.grey.shade200,
-                            child: Container(
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: CachedNetworkImage(
-                                      imageUrl: cart[index].image_path,
-                                      height: 100,
-                                      width: 100,
-                                    ),
-                                  ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width - 170,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: MediaQuery.of(context).size.width - 170,
-                                          child: Text(
-                                            cart[index].title,
-                                            style: TextStyle(fontSize: 25),
-                                          ),
+                            color: Colors.grey.shade100,
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CachedNetworkImage(
+                                          imageUrl: cart[index].image_path,
+                                          height: 100,
+                                          width: 100,
                                         ),
-                                        Row(
+                                      ),
+                                      Container(
+                                        width: MediaQuery.of(context).size.width - 170,
+                                        child: Column(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              cart[index].price.toString(),
-                                              style: TextStyle(fontSize: 20),
+                                            Container(
+                                              width: MediaQuery.of(context).size.width - 170,
+                                              child: Text(
+                                                cart[index].title,
+                                                style: TextStyle(fontSize: 25),
+                                              ),
                                             ),
-                                            IconButton(onPressed: () {}, icon: Icon(Icons.favorite))
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  cart[index].price.toString(),
+                                                  style: TextStyle(fontSize: 20),
+                                                ),
+                                                IconButton(onPressed: () {}, icon: Icon(Icons.favorite))
+                                              ],
+                                            ),
+                                            BlocBuilder<CartBloc, CartState>(
+                                              bloc: cartBloc,
+                                              builder: (context, state) {
+                                                print('amount updatd ');
+                                                return Container(
+                                                  height: 50,
+                                                  width: 150,
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    children: [
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            cartBloc.add(DecrementCartItemAmount(productModel: cart[index]));
+                                                          },
+                                                          icon: Icon(Icons.remove)),
+                                                      Text(cart[index].amount.toString()),
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            cartBloc.add(IncrementCartItemAmount(productModel: cart[index]));
+                                                          },
+                                                          icon: Icon(Icons.add))
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            ),
                                           ],
                                         ),
-                                        BlocBuilder<CartBloc, CartState>(
-                                          bloc: cartBloc,
-                                          builder: (context, state) {
-                                            print('amount updatd ');
-                                            return Container(
-                                              height: 50,
-                                              width: 150,
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                children: [
-                                                  IconButton(
-                                                      onPressed: () {
-                                                        cartBloc.add(DecrementCartItemAmount(productModel: cart[index]));
-                                                      },
-                                                      icon: Icon(Icons.remove)),
-                                                  Text(cart[index].amount.toString()),
-                                                  IconButton(
-                                                      onPressed: () {
-                                                        cartBloc.add(IncrementCartItemAmount(productModel: cart[index]));
-                                                      },
-                                                      icon: Icon(Icons.add))
-                                                ],
-                                              ),
-                                            );
-                                            //}
-                                            //else {
-                                            //   return Container(
-                                            //     height: 50,
-                                            //     width: 150,
-                                            //     child: Row(
-                                            //       mainAxisAlignment: MainAxisAlignment.start,
-                                            //       children: [
-                                            //         IconButton(
-                                            //             onPressed: () {
-                                            //               cartBloc.add(DecrementCartItemAmount(productModel: cart[index]));
-                                            //             },
-                                            //             icon: Icon(Icons.remove)),
-                                            //         Text(cart[index].amount.toString()),
-                                            //         IconButton(
-                                            //             onPressed: () {
-                                            //               cartBloc.add(IncrementCartItemAmount(productModel: cart[index]));
-                                            //             },
-                                            //             icon: Icon(Icons.add))
-                                            //       ],
-                                            //     ),
-                                            //   );
-                                            // }
-                                          },
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    TextButton(
+                                        onPressed: () {
+                                          cart[index].amount = 1;
+                                          cartBloc.add(DecrementCartItemAmount(productModel: cart[index]));
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            'Remove',
+                                            style: TextStyle(fontSize: 15),
+                                          ),
+                                        )),
+                                    //Text('|', style: TextStyle(fontSize: 20),),
+                                    TextButton(
+                                        onPressed: () {
+                                          HELPER.navigateToScreen(context, checkoutScreen(productbought: [cart[index]]));
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            ' BUY NOW ',
+                                            style: TextStyle(fontSize: 15),
+                                          ),
+                                        ))
+                                  ],
+                                )
+                              ],
                             ));
                       },
                     ),
@@ -249,7 +259,7 @@ class _CartScreenState extends State<CartScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'RS. ${total}',
+                      'RS. ${final_total}',
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
