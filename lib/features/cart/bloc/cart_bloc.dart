@@ -14,6 +14,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<IncrementCartItemAmount>(incrementCartItemAmount);
     on<DecrementCartItemAmount>(decrementCartItemAmount);
     on<CartInitialevent>(cartInitialevent);
+   
   }
 
   FutureOr<void> updateTotal_(updateTotal event, Emitter<CartState> emit) {
@@ -44,4 +45,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   FutureOr<void> cartInitialevent(CartInitialevent event, Emitter<CartState> emit) {
     emit(CartInitial());
   }
+
+
 }
