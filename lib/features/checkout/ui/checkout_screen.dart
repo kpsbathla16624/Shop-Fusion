@@ -108,7 +108,7 @@ class checkoutScreen extends StatelessWidget {
 
                             return Container(
                               height: 50,
-                              width: 150,
+                              width: 110,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
