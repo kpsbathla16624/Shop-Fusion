@@ -5,7 +5,9 @@ import 'package:shopfusion/data/repositories/Products_models.dart';
 import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/adress/adresses.dart';
 import 'package:shopfusion/features/checkout/bloc/checkout_bloc.dart';
+import 'package:shopfusion/features/payment%20screen/ui/paymentScreen.dart';
 import 'package:shopfusion/utils/constants/colors.dart';
+import 'package:shopfusion/utils/helpers/helper_function.dart';
 
 class checkoutScreen extends StatelessWidget {
   const checkoutScreen({super.key, required this.productbought});
@@ -24,6 +26,25 @@ class checkoutScreen extends StatelessWidget {
           'Checkout',
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
+      ),
+      bottomNavigationBar: Container(
+        child: TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(SfColor.secondary),
+              elevation: MaterialStateProperty.all<double>(0),
+              shadowColor: MaterialStateProperty.all<Color>(Colors.transparent),
+            ),
+            //style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(SfColor.secondary)),
+            onPressed: () {
+              HELPER.navigateToScreen(context, PaymentScreen(products: productbought));
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 3),
+              child: Text(
+                'CheckOut',
+                style: TextStyle(color: Colors.black, fontSize: 15),
+              ),
+            )),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
@@ -93,9 +114,7 @@ class checkoutScreen extends StatelessWidget {
                                 children: [
                                   IconButton(
                                       onPressed: () {
-                                        
-                                          checkoutBloc.add(DecrementBUYItemAmount(productModel: productbought[i]));
-                                        
+                                        checkoutBloc.add(DecrementBUYItemAmount(productModel: productbought[i]));
                                       },
                                       icon: Icon(Icons.remove)),
                                   Text(productbought[i].amount.toString()),
