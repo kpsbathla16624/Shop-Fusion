@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopfusion/data/repositories/Products_models.dart';
 import 'package:shopfusion/data/repositories/products.dart';
+import 'package:shopfusion/features/orders%20Screen/ui/orderplaced.dart';
 import 'package:shopfusion/utils/constants/colors.dart';
 import 'package:shopfusion/utils/helpers/helper_function.dart';
 
@@ -69,7 +70,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       backgroundColor: MaterialStateProperty.all<Color>(SfColor.secondary),
                     ),
                     onPressed: () {
-                     // HELPER.navigateToScreen(context, screen)
+                      HELPER.navigateToScreen(context, OrderPlaced());
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 3),
@@ -170,7 +171,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     )),
               ],
             ),
-
             ExpansionTile(
               title: const Text(
                 'Gift Card',
@@ -208,7 +208,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ),
               leading: Icon(Icons.currency_rupee),
               children: [
-                
                 TextButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(SfColor.secondary),
@@ -217,7 +216,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 3),
                       child: Text(
-                        'Pay  $final_buy_total in Cash ' ,
+                        'Pay  $final_buy_total in Cash ',
                         style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.w500),
                       ),
                     )),

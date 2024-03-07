@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:shopfusion/utils/constants/colors.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -11,6 +11,11 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Orders'),
+        backgroundColor: SfColor.primary,
+      ),
+    );
   }
 }

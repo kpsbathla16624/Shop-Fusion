@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shopfusion/features/orders%20Screen/ui/OrderScreen.dart';
 import 'package:shopfusion/features/profile/ui/settings.dart';
 import 'package:shopfusion/utils/constants/colors.dart';
 import 'package:shopfusion/utils/helpers/helper_function.dart';
@@ -75,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(height: 15),
                 InkWell(
                   onTap: () {
-                    HELPER.navigateToScreen(context, SettingsPage());
+                    HELPER.navigateToScreen(context, OrderScreen());
                   },
                   child: Row(
                     children: [

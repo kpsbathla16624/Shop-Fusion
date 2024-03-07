@@ -28,5 +28,8 @@ class HELPER {
   static void navigateToScreen(BuildContext context, Widget screen) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
   }
+  static void navigateToScreenReplacement(BuildContext context, Widget screen) {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => screen));
+  }
 
 }
