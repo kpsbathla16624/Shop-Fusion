@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopfusion/common/widgets/Card.dart';
@@ -27,6 +26,7 @@ class _HomeState extends State<Home> {
 
   void loaddata() async {
     cart = await loadCartData();
+    orders = await loadOrderData();
   }
 
   @override
@@ -69,26 +69,26 @@ class _HomeState extends State<Home> {
                 SizedBox(height: 10),
                 Divider(),
                 for (int i = 0; i < lists.length; i++)
-                if(lists[i].isNotEmpty)
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        lists[i][0].category,
-                        style: TextStyle(fontSize: 25),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: lists[i].map((e) => ProductCard(context, e)).toList(),
+                  if (lists[i].isNotEmpty)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          lists[i][0].category,
+                          style: TextStyle(fontSize: 25),
                         ),
-                      ),
-                      SizedBox(height: 10)
-                    ],
-                  ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: lists[i].map((e) => ProductCard(context, e)).toList(),
+                          ),
+                        ),
+                        SizedBox(height: 10)
+                      ],
+                    ),
               ]),
             );
           default:

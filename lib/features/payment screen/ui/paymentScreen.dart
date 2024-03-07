@@ -13,6 +13,7 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +71,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       backgroundColor: MaterialStateProperty.all<Color>(SfColor.secondary),
                     ),
                     onPressed: () {
+                      for (var i = 0; i < widget.products.length; i++) {
+                        orders.add(widget.products[i]);
+                      }
                       HELPER.navigateToScreen(context, OrderPlaced());
+                      
+                      saveOrderData(orders);
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 3),
