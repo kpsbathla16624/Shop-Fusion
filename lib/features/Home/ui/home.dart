@@ -41,55 +41,63 @@ class _HomeState extends State<Home> {
       builder: (context, state) {
         switch (state.runtimeType) {
           case InitialState:
-            return SingleChildScrollView(
-              padding: EdgeInsets.all(8),
-              scrollDirection: Axis.vertical,
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Container(
-                  height: 265,
-                  width: double.infinity,
-                  child: MyPageView(),
-                ),
-                SizedBox(height: 20),
-                Divider(),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Categories',
-                        style: TextStyle(fontSize: 25),
-                      ),
-                      SizedBox(height: 10),
-                      Category_row(),
-                    ],
+            return RefreshIndicator(
+              onRefresh: () {
+                shuffle_lists();
+                return Future.delayed(Duration(seconds: 1), () {
+                  homeBloc.add(initalEvent());
+                });
+              },
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(8),
+                scrollDirection: Axis.vertical,
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Container(
+                    height: 265,
+                    width: double.infinity,
+                    child: MyPageView(),
                   ),
-                ),
-                SizedBox(height: 10),
-                Divider(),
-                for (int i = 0; i < lists.length; i++)
-                  if (lists[i].isNotEmpty)
-                    Column(
+                  SizedBox(height: 20),
+                  Divider(),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          lists[i][0].category,
+                          'Categories',
                           style: TextStyle(fontSize: 25),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: lists[i].map((e) => ProductCard(context, e)).toList(),
-                          ),
-                        ),
-                        SizedBox(height: 10)
+                        SizedBox(height: 10),
+                        Category_row(),
                       ],
                     ),
-              ]),
+                  ),
+                  SizedBox(height: 10),
+                  Divider(),
+                  for (int i = 0; i < lists.length; i++)
+                    if (lists[i].isNotEmpty)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            lists[i][0].category,
+                            style: TextStyle(fontSize: 25),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: lists[i].map((e) => ProductCard(context, e)).toList(),
+                            ),
+                          ),
+                          SizedBox(height: 10)
+                        ],
+                      ),
+                ]),
+              ),
             );
           default:
             return Container(
