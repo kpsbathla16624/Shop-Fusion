@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shopfusion/data/repositories/products.dart';
 import 'package:shopfusion/features/orders%20Screen/ui/OrderScreen.dart';
 import 'package:shopfusion/utils/helpers/helper_function.dart';
 
@@ -17,6 +18,8 @@ class _OrderPlacedState extends State<OrderPlaced> {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
       HELPER.navigateToScreenReplacement(context, OrderScreen());
+      saveOrderData(orders);
+    
     });
   }
 
@@ -27,16 +30,16 @@ class _OrderPlacedState extends State<OrderPlaced> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(child: Lottie.asset('assets/logo/orderPlaced.json'),),
-            Text('Order Placed', style: TextStyle(color: Colors.black, fontSize: 30),)
+            Container(
+              child: Lottie.asset('assets/logo/orderPlaced.json'),
+            ),
+            Text(
+              'Order Placed',
+              style: TextStyle(color: Colors.black, fontSize: 30),
+            )
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
-

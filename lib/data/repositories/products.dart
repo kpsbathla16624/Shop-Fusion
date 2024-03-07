@@ -235,6 +235,7 @@ List<ProductModel> products = [
 
 List<ProductModel> cart = [];
 List<ProductModel> wislist = [];
+List<ProductModel> orders = [];
 
 // Save cart data to SharedPreferences
 Future<void> saveCartData(List<ProductModel> cart) async {
@@ -250,6 +251,23 @@ Future<List<ProductModel>> loadCartData() async {
   if (cartString != null) {
     final List<dynamic> cartData = jsonDecode(cartString);
     return cartData.map((data) => ProductModel.fromJson(data)).toList();
+  }
+
+  return [];
+}
+Future<void> saveOrderData(List<ProductModel> order) async {
+  final prefs = await SharedPreferences.getInstance();
+  final OrderData = orders.map((product) => product.toJson()).toList();
+  await prefs.setString('Order', jsonEncode(OrderData));
+}
+
+// Load cart data from SharedPreferences
+Future<List<ProductModel>> loadOrderData() async {
+  final prefs = await SharedPreferences.getInstance();
+  final OrderString = prefs.getString('Order');
+  if (OrderString != null) {
+    final List<dynamic> OrderData = jsonDecode(OrderString);
+    return OrderData.map((data) => ProductModel.fromJson(data)).toList();
   }
 
   return [];
