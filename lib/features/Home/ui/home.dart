@@ -84,9 +84,7 @@ class _HomeState extends State<Home> {
                             lists[i][0].category,
                             style: TextStyle(fontSize: 25),
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
+                          SizedBox(height: 20),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
