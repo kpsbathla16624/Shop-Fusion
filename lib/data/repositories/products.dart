@@ -230,7 +230,7 @@ List<ProductModel> products = [
       reviews: 789,
       no_rating: 9898,
       rating: 4.5,
-      amount: 1)
+      amount: 1), 
 ];
 
 List<ProductModel> cart = [];
