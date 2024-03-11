@@ -14,19 +14,27 @@ class Category_row extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        category_row('Mobiles', 'https://rukminim1.flixcart.com/flap/80/80/image/22fddf3c7da4c4f4.png?q=100',
-            MobileCategory(list: mobiles), context),
+        category_row(
+            'Mobiles',
+            'https://rukminim1.flixcart.com/flap/80/80/image/22fddf3c7da4c4f4.png?q=100',
+            MobileCategory(
+              list: mobiles,
+              title: "Mobiles",
+            ),
+            context),
         category_row(
             'Fashion',
             'https://rukminim1.flixcart.com/fk-p-flap/80/80/image/0d75b34f7d8fbcb3.png?q=100',
             MobileCategory(
               list: others,
+              title: "Shoes",
             ),
             context),
         category_row(
             'Electronics',
             'https://rukminim1.flixcart.com/flap/80/80/image/69c6589653afdb9a.png?q=100',
             MobileCategory(
+              title: "Electronics",
               list: Electronics,
             ),
             context),
@@ -35,6 +43,7 @@ class Category_row extends StatelessWidget {
             'https://rukminim1.flixcart.com/flap/80/80/image/29327f40e9c4d26b.png?q=100',
             MobileCategory(
               list: [],
+              title: "",
             ),
             context),
         category_row(
@@ -42,6 +51,7 @@ class Category_row extends StatelessWidget {
             'https://rukminim1.flixcart.com/fk-p-flap/80/80/image/0139228b2f7eb413.jpg?q=100',
             MobileCategory(
               list: [],
+              title: "",
             ),
             context),
         category_row(
@@ -49,6 +59,7 @@ class Category_row extends StatelessWidget {
             'https://img.freepik.com/free-vector/soccer-volleyball-baseball-rugby-equipment_1441-4026.jpg',
             MobileCategory(
               list: [],
+              title: "",
             ),
             context),
         category_row(
@@ -56,6 +67,7 @@ class Category_row extends StatelessWidget {
             'https://atlas-content-cdn.pixelsquid.com/stock-images/childrens-books-hardcover-book-4GMB1WA-600.jpg',
             MobileCategory(
               list: [],
+              title: "",
             ),
             context),
         SizedBox(width: 15),
