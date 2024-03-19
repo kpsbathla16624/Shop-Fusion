@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "184360520945",
+    "project_id": "shopfusion-kps",
+    "storage_bucket": "shopfusion-kps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184360520945:android:9f409b88dd64979902ad50",
+        "android_client_info": {
+          "package_name": "com.example.shopfusion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZsPzQbYYbQg4VbztwekQOw1LB3PC0Z5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
